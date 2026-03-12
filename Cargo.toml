@@ -1,0 +1,21 @@
+[package]
+name = "sig-remover"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "sig-remover"
+path = "src/main.rs"
+
+[dependencies]
+dioxus = { version = "0.6", features = ["desktop"] }
+image = { version = "0.25", features = ["png", "jpeg"] }
+rfd = "0.15"
+base64 = "0.22"
+tokio = { version = "1", features = ["full"] }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

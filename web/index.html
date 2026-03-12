@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sig Remover - Web Version</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Controls -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">✍</span>
+                <div class="brand-text">
+                    <h1 class="brand-title">Sig Remover</h1>
+                    <p class="brand-sub">Signature Background Eraser</p>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <div class="control-header">
+                        <label>Threshold</label>
+                        <span id="threshold-val" class="badge">200</span>
+                    </div>
+                    <p class="control-desc">Batas deteksi warna putih</p>
+                    <input type="range" id="threshold" min="50" max="255" value="200" class="slider">
+                </div>
+
+                <div class="control-group">
+                    <div class="control-header">
+                        <label>Toleransi Warna</label>
+                        <span id="tolerance-val" class="badge">30</span>
+                    </div>
+                    <p class="control-desc">Menghaluskan sisa piksel sekitar</p>
+                    <input type="range" id="tolerance" min="0" max="150" value="30" class="slider">
+                </div>
+
+                <div class="control-group">
+                    <div class="control-header">
+                        <label>Kontras Tinta</label>
+                        <span id="contrast-val" class="badge">0</span>
+                    </div>
+                    <p class="control-desc">Menajamkan tulisan/tinta</p>
+                    <input type="range" id="contrast" min="-100" max="100" value="0" class="slider">
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <button id="download-btn" class="btn btn-save" disabled>
+                <span class="btn-icon">💾</span> Simpan PNG Transparan
+            </button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="upload-area" id="drop-zone">
+                <input type="file" id="file-input" accept="image/*" hidden>
+                <div class="upload-content">
+                    <div class="upload-icon">📁</div>
+                    <h3>Tarik & Lepas Gambar Tanda Tangan</h3>
+                    <p>Atau klik tombol di bawah</p>
+                    <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
+                        Pilih Gambar
+                    </button>
+                    <p class="format-help">Mendukung: JPG, PNG, WEBP</p>
+                </div>
+            </div>
+
+            <!-- Previews (hidden initially) -->
+            <div class="preview-area" id="preview-area" style="display: none;">
+                <div class="preview-card">
+                    <div class="preview-header">
+                        <span class="tag tag-original">ORIGINAL</span>
+                    </div>
+                    <div class="preview-frame">
+                        <img id="original-img" alt="Original">
+                    </div>
+                </div>
+
+                <div class="arrow">→</div>
+
+                <div class="preview-card">
+                    <div class="preview-header">
+                        <span class="tag tag-result">TRANSPARAN</span>
+                    </div>
+                    <!-- The checkerboard background shows the transparency -->
+                    <div class="preview-frame checker">
+                        <canvas id="result-canvas"></canvas>
+                    </div>
+                </div>
+                
+                <button class="btn btn-secondary" id="reset-btn">
+                     Upload Gambar Lain
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Hidden canvas for original image extraction -->
+    <canvas id="hidden-canvas" style="display: none;"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>

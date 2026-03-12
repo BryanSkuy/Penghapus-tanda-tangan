@@ -1,0 +1,23 @@
+[application]
+name = "Signature BG Remover"
+default_platform = "desktop"
+out_dir = "dist"
+asset_dir = "assets"
+
+[web.app]
+title = "Signature BG Remover"
+
+[desktop.publish.profile.release]
+skip_bundle = false
+
+[bundle]
+identifier = "com.sigremover.app"
+icon = []
+publisher = "SigRemover"
+copyright = "2026"
+category = "Utility"
+short_description = "Remove background from signature images"
+long_description = """
+A fast desktop app that removes the white background from
+handwritten signature images, producing a transparent PNG.
+"""
